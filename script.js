@@ -155,4 +155,23 @@ if (counters.length && !calm) {
     el.textContent = "0" + (el.dataset.suffix || "");
     counterObserver.observe(el);
   });
+} 
+// 7. Phone menu: a menu button appears on small screens
+if (header) {
+  const menuNav = header.querySelector("nav");
+  const burger = document.createElement("button");
+  burger.className = "burger";
+  burger.setAttribute("aria-label", "Menu");
+  burger.setAttribute("aria-expanded", "false");
+  header.insertBefore(burger, menuNav);
+
+  const setMenu = open => {
+    header.classList.toggle("menu-open", open);
+    burger.setAttribute("aria-expanded", open);
+  };
+
+  burger.addEventListener("click", () => setMenu(!header.classList.contains("menu-open")));
+  menuNav.addEventListener("click", e => { if (e.target.closest("a")) setMenu(false); });
+  document.addEventListener("click", e => { if (!header.contains(e.target)) setMenu(false); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape") setMenu(false); });
 }

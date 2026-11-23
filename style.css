@@ -533,3 +533,45 @@ body.leaving { opacity: 0; transition: opacity 0.25s; }
 @media (max-width: 800px) {
   .stats-grid > div + div { border-left: 0; }
 } 
+/* ===== Phone layout: menu button, compact top bar, smaller cards ===== */
+.burger { display: none; }
+
+@media (max-width: 800px) {
+  .infobar { flex-wrap: nowrap; justify-content: space-between; padding: 0.45rem 1rem; font-size: 0.85rem; }
+  .infobar div a:nth-child(2), .infobar div span { display: none; }
+
+  .top { flex-direction: row; justify-content: space-between; align-items: center; gap: 0; padding: 0.6rem 1rem; background: rgba(10, 31, 60, 0.94); }
+  .brand { font-size: 1.1rem; }
+
+  .burger { display: block; position: relative; width: 44px; height: 44px; border: 0; border-radius: 50%; background: rgba(255, 255, 255, 0.12); cursor: pointer; }
+  .burger::before, .burger::after { content: ""; position: absolute; left: 13px; right: 13px; height: 2px; border-radius: 2px; background: #fff; transition: top 0.35s var(--spring), transform 0.35s var(--spring); }
+  .burger::before { top: 17px; }
+  .burger::after { top: 25px; }
+  .top.menu-open .burger::before { top: 21px; transform: rotate(45deg); }
+  .top.menu-open .burger::after { top: 21px; transform: rotate(-45deg); }
+
+  .top nav { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; gap: 0.2rem; padding: 0.6rem 1rem 1rem; background: rgba(10, 31, 60, 0.98); border-top: 1px solid rgba(255, 255, 255, 0.12); }
+  .top.menu-open nav { display: flex; }
+  .top nav a { padding: 0.85rem 1rem; font-size: 1.05rem; }
+
+  .section { padding: 3.25rem 1.25rem; }
+  .hero { padding: 2.5rem 1.25rem 4.5rem; }
+  .pagehead { padding: 3rem 1.25rem; }
+  .grid { gap: 1rem; margin-top: 1.75rem; }
+  .grid > div { padding: 1.4rem 1.25rem; }
+  .team-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 1.75rem; }
+  .photo { aspect-ratio: 1 / 1.1; font-size: 2rem; }
+  .member-info { padding: 0.9rem; }
+  .member h3 { font-size: 1rem; }
+  .member .role { font-size: 0.85rem; }
+  .member .tagline { display: none; }
+  .profile .photo { max-width: 260px; margin: 0 auto; }
+  .stats { padding: 3rem 1.25rem; }
+  .stats-grid { grid-template-columns: 1fr 1fr; gap: 2rem 1rem; }
+  .stats-grid > div + div { border-left: 0; }
+  .map { height: 300px; }
+}
+
+@media (hover: none) {
+  .grid > div:hover, .member:hover, .vm > div:hover { transform: none; }
+} 
